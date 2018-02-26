@@ -1,40 +1,32 @@
 import React, {Component} from 'react';
+import CardNumberInput from './CardNumberInput';
 
-const CardNumberInput =({onChange, value})=>{
-    return <input  name="cardNumber" onChange={onChange} value={value} /> 
-}
-
-class CardNumberHolder extends Component{
-    state={   
-        cardNumber: ""
-    }   
+function CardNumberHolder(WrappedComponent){
+        
+    return class CardNumberHolder extends React.Component {
+        constructor(props) {
+          super(props);
+          this.state = {
+            cardNumber: ""
+          };
+        }
 
     handleChange= event =>{
         let {value} = event.target;
-        console.log(value);
-         let temp = value.replace(/ /g, "");
-        let newString = "";
-        temp.split('').forEach((element, i) => {
-            newString += element;
-            if(((i+1)%4 === 0) && (temp.length>i+1)){
-                newString += " ";
-            }
-        });
-
-        this.setState({cardNumber: newString});
-
-
+        
+        this.setState({cardNumber: value});
     }
 
     render(){
         const {cardNumber} = this.state;
-        return <div>
-            <CardNumberInput onChange={this.handleChange} value={cardNumber}/>
+        //console.log('cardNumber', cardNumber);
+        return <div>                        
+            <WrappedComponent onChange={this.handleChange} value={cardNumber} />            
         </div>
         
     }
-}
+}};
 
-CardNumberHolder.displayName = "Card number formating";
+//CardNumberHolder.displayName = "Card number formating";
 
-export default CardNumberHolder;
+export default CardNumberHolder(CardNumberInput);

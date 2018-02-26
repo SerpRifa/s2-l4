@@ -10,15 +10,9 @@ class ModalButton extends Component{
 
     constructor(props){
         super(props);
-
-        // this.portal = document.createElement('div');
-        // this.portal.setAttribute('id', "modal");
-        // document.body.appendChild(this.portal);
-
     }
 
-    componentWillUnmount(){
-        // document.body.removeChild(this.portal);
+    componentWillUnmount(){        
     }
 
     
